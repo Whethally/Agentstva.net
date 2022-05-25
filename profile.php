@@ -72,8 +72,7 @@ function phone_format($phone)
                     <div class="input-container-profile">
                         <div class="input-item">
                             <div class="myaccount">
-                                <img src="<?=$row['avatar']?>"
-                                    alt="" class="square">
+                                <img src="<?=$row['avatar']?>" alt="" class="square">
                                 <h1>Аккаунт</h1>
                             </div>
                         </div>
@@ -116,6 +115,43 @@ function phone_format($phone)
                                     unset($date_of_birthday);
                                 }
                             }
+                            
+                            if (isset($_POST['place_of_birth'])) {
+                                $place_of_birth = $_POST['place_of_birth'];
+                                if ($place_of_birth == '') {
+                                    unset($place_of_birth);
+                                }
+                            }
+                            if (isset($_POST['passport'])) {
+                                $passport = $_POST['passport'];
+                                if ($passport == '') {
+                                    unset($passport);
+                                }
+                            }
+                            if (isset($_POST['passport_issued'])) {
+                                $passport_issued = $_POST['passport_issued'];
+                                if ($passport_issued == '') {
+                                    unset($passport_issued);
+                                }
+                            }
+                            if (isset($_POST['passport_date'])) {
+                                $passport_date = $_POST['passport_date'];
+                                if ($passport_date == '') {
+                                    unset($passport_date);
+                                }
+                            }
+                            if (isset($_POST['passport_code'])) {
+                                $passport_code = $_POST['passport_code'];
+                                if ($passport_code == '') {
+                                    unset($passport_code);
+                                }
+                            }
+                            if (isset($_POST['address'])) {
+                                $address = $_POST['address'];
+                                if ($address == '') {
+                                    unset($address);
+                                }
+                            }
                             // $first_Name = $_POST["first_Name"];
                             // $last_Name = $_POST["last_Name"];
                             // $middle_Name = $_POST["middle_Name"];
@@ -147,8 +183,26 @@ function phone_format($phone)
                             $date_of_birthday = stripslashes($date_of_birthday);
                             $date_of_birthday = htmlspecialchars($date_of_birthday);
 
+                            $place_of_birth = stripslashes($place_of_birth);
+                            $place_of_birth = htmlspecialchars($place_of_birth);
+
+                            $passport = stripslashes($passport);
+                            $passport = htmlspecialchars($passport);
+
+                            $passport_issued = stripslashes($passport_issued);
+                            $passport_issued = htmlspecialchars($passport_issued);
+
+                            $passport_date = stripslashes($passport_date);
+                            $passport_date = htmlspecialchars($passport_date);
+
+                            $passport_code = stripslashes($passport_code);
+                            $passport_code = htmlspecialchars($passport_code);
+
+                            $address = stripslashes($address);
+                            $address = htmlspecialchars($address);
+
                             $sql = "UPDATE users
-                            SET `first_Name` = '$first_Name', `middle_Name` = '$middle_Name', `last_Name` = '$last_Name', `phone` = '$phone', `email` = '$email', `date_of_birthday` = '$date_of_birthday'
+                            SET `first_Name` = '$first_Name', `middle_Name` = '$middle_Name', `last_Name` = '$last_Name', `phone` = '$phone', `email` = '$email', `date_of_birthday` = '$date_of_birthday', `place_of_birth` = '$place_of_birth', `passport` = '$passport', `passport_issued` = '$passport_issued', `passport_date` = '$passport_date', `passport_code` = '$passport_code', `address` = '$address'
                             WHERE `id_User` = " . $_SESSION['id_User'];
                             $result = mysqli_query($db, $sql);
                             if ($result == true) {
@@ -226,8 +280,7 @@ function phone_format($phone)
                                             <p class="title">E-mail</p>
                                         </div>
                                         <div class="account-group">
-                                            <input type="text" name="email" class="subtitle"
-                                                value="<?=$row['email']?>">
+                                            <input type="text" name="email" class="subtitle" value="<?=$row['email']?>">
                                             </input>
                                         </div>
                                     </div>
@@ -242,6 +295,93 @@ function phone_format($phone)
                                         <div class="account-group">
                                             <input type="date" name="date_of_birthday" class="subtitle"
                                                 value="<?=$row['date_of_birthday']?>">
+                                            </input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-item">
+                                <div class="infos">
+                                    <div class="input-group">
+                                        <div class="account-text">
+                                            <div class="icon">
+                                                <i class='bx bxs-user'></i>
+                                            </div>
+                                            <p class="title">Место рождения</p>
+                                        </div>
+                                        <div class="account-group">
+                                            <input type="text" name="place_of_birth" class="subtitle"
+                                                value="<?=$row['place_of_birth']?>">
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="account-text">
+                                            <div class="icon">
+                                                <i class='bx bxs-user'></i>
+                                            </div>
+                                            <p class="title">Адрес</p>
+                                        </div>
+                                        <div class="account-group">
+                                            <input type="text" name="address" class="subtitle"
+                                                value="<?=$row['address']?>">
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="account-text">
+                                            <div class="icon">
+                                                <i class='bx bxs-phone'></i>
+                                            </div>
+                                            <p class="title">Паспорт</p>
+                                        </div>
+                                        <div class="account-group">
+                                            <input type="text" name="passport" class="subtitle"
+                                                value="<?=$row['passport']?>">
+                                            </input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="infos">
+                                    <div class="input-group">
+
+                                        <div class="account-text">
+                                            <div class="icon">
+                                                <i class='bx bxs-envelope'></i>
+                                            </div>
+                                            <p class="title">Выдан</p>
+                                        </div>
+                                        <div class="account-group">
+                                            <input type="text" name="passport_issued" class="subtitle"
+                                                value="<?=$row['passport_issued']?>">
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+
+                                        <div class="account-text">
+                                            <div class="icon">
+                                                <i class='bx bxs-calendar'></i>
+                                            </div>
+                                            <p class="title">Дата выдачи</p>
+                                        </div>
+                                        <div class="account-group">
+                                            <input type="date" name="passport_date" class="subtitle"
+                                                value="<?=$row['passport_date']?>">
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+
+                                        <div class="account-text">
+                                            <div class="icon">
+                                                <i class='bx bxs-calendar'></i>
+                                            </div>
+                                            <p class="title">Код поразделения</p>
+                                        </div>
+                                        <div class="account-group">
+                                            <input type="text" name="passport_code" class="subtitle"
+                                                value="<?=$row['passport_code']?>">
                                             </input>
                                         </div>
                                     </div>
@@ -310,8 +450,7 @@ $res = mysqli_query($db, $sql);
 if (mysqli_num_rows($res) > 0) {
     foreach ($res as $item) { ?>
                                 <div class="category__data">
-                                    <img src="<?=$item['image'] ?>"
-                                        alt="" class="category__img" />
+                                    <img src="<?=$item['image'] ?>" alt="" class="category__img" />
                                     <h3 class="category__title"><?=$item['name'] ?>
                                     </h3>
                                     <p class="category__description">
@@ -360,15 +499,15 @@ if (mysqli_num_rows($res) > 0) {
                 <?php
             if (isset($_POST['editPassword'])) {
                 $current_password = $_POST['current_password'];
+                $res_current_password = password_verify($current_password, $row['password']);
                 $new_password = $_POST['new_password'];
-
-                if ($current_password == $row['password'] && $current_password != $new_password && !empty($new_password)) {
-                    $sql = "UPDATE `users` SET `password` = '$new_password' WHERE `id_User`='" . $_SESSION["id_User"] . "'";
+                if ($res_current_password) {
+                    $sql = "UPDATE `users` SET `password` = '". password_hash($new_password, PASSWORD_BCRYPT) ."' WHERE `id_User`='" . $_SESSION["id_User"] . "'";
 
                     $edit = mysqli_query($db, $sql);
                     echo "<script> location.href = 'profile.php' </script>";
                 } else {
-                    echo("<p>Неверный пароль / пароли совпадают</p>");
+                    echo("<p>Неверный пароль</p>");
                 }
             }
     ?>
@@ -445,6 +584,7 @@ if (mysqli_num_rows($res) > 0) {
         $description = empty($_POST['description']) ? false : $_POST['description'];
         $area = empty($_POST['area']) ? false : $_POST['area'];
         $floor = empty($_POST['floor']) ? false : $_POST['floor'];
+        $max_floor = empty($_POST['max_floor']) ? false : $_POST['max_floor'];
         $year = empty($_POST['year']) ? false : $_POST['year'];
         $bedrooms = empty($_POST['bedrooms']) ? false : $_POST['bedrooms'];
         $height = empty($_POST['height']) ? false : $_POST['height'];
@@ -453,14 +593,14 @@ if (mysqli_num_rows($res) > 0) {
         $balcony = empty($_POST['balcony']) ? false : $_POST['balcony'];
         $street = empty($_POST['street']) ? false : $_POST['street'];
 
-        if ($tmp and $name and $price and $description and $area and $floor and $year and $bedrooms and $height and $city and $material and $balcony and $street) {
+        if ($tmp and $name and $price and $description and $area and $floor and $max_floor and $year and $bedrooms and $height and $city and $material and $balcony and $street) {
             $image = $_FILES['imagePost']['name'];
             $image = "assets/img/" . $image;
             $id_User = $_SESSION['id_User'];
 
             $sql = "INSERT INTO `items`
-            (`id_item`, `image`, `name`, `city`, `price`, `description`, `street`, `material`, `balcony`, `area`, `floor`, `year`, `bedrooms`, `height`, `id_User`)
-            VALUES (NULL, '$image', '$name', '$city', '$price', '$description', '$street', '$material', '$balcony', '$area', '$floor', '$year', '$bedrooms', '$height', '$id_User')";
+            (`id_item`, `image`, `name`, `city`, `price`, `description`, `street`, `material`, `balcony`, `area`, `floor`, `max_floor`, `year`, `bedrooms`, `height`, `id_User`)
+            VALUES (NULL, '$image', '$name', '$city', '$price', '$description', '$street', '$material', '$balcony', '$area', '$floor', `max_floor`, '$year', '$bedrooms', '$height', '$id_User')";
 
             $result = mysqli_query($db, $sql);
 
@@ -527,6 +667,8 @@ if (mysqli_num_rows($res) > 0) {
                     <div class="input-group">
                         <label for="floor">Введите этаж</label>
                         <input type="number" id="floor" name="floor">
+                        <label for="max_floor">Введите количество этажей в доме</label>
+                        <input type="number" id="max_floor" name="max_floor">
                     </div>
                     <div class="input-group">
                         <label for="year">Введите год постройки</label>

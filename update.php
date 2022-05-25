@@ -31,8 +31,7 @@ include("datebase.php");
             <div class="modal-posts_edit">
                 <div class="modal-content">
                     <form action="updatePost.php" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="id"
-                            value="<?=$item['id_item']?>">
+                        <input type="hidden" name="id" value="<?=$item['id_item']?>">
                         <a href="profile.php" class="icon">
                             <i class="bx bxs-x-circle"></i>
                         </a>
@@ -43,21 +42,18 @@ include("datebase.php");
                             </div>
                             <div class="input-group">
                                 <label for="name">Введите название поста</label>
-                                <input type="title" id="name" name="name"
-                                    value="<?=$item['name']?>">
+                                <input type="title" id="name" name="name" value="<?=$item['name']?>">
                             </div>
                             <div class="input-group">
                                 <label for="city">Введите название города</label>
-                                <input type="title" id="city" name="city"
-                                    value="<?=$item['city']?>">
+                                <input type="title" id="city" name="city" value="<?=$item['city']?>">
                             </div>
                         </div>
 
                         <div class="infos-posts">
                             <div class="input-group">
                                 <label for="price">Введите цену</label>
-                                <input type="number" id="price" name="price"
-                                    value="<?=$item['price']?>">
+                                <input type="number" id="price" name="price" value="<?=$item['price']?>">
                             </div>
                             <div class="input-group">
                                 <label for="description">Введите описания</label>
@@ -66,49 +62,43 @@ include("datebase.php");
                             </div>
                             <div class="input-group">
                                 <label for="street">Введите улицу</label>
-                                <input type="title" id="street" name="street"
-                                    value="<?=$item['street']?>">
+                                <input type="title" id="street" name="street" value="<?=$item['street']?>">
                             </div>
                         </div>
                         <div class="infos-posts">
                             <div class="input-group">
                                 <label for="material">Введите материал</label>
-                                <input type="title" id="material" name="material"
-                                    value="<?=$item['material']?>">
+                                <input type="title" id="material" name="material" value="<?=$item['material']?>">
                             </div>
                             <div class="input-group">
                                 <label for="balcony">Введите есть ли балкон</label>
-                                <input type="title" id="balcony" name="balcony"
-                                    value="<?=$item['balcony']?>">
+                                <input type="title" id="balcony" name="balcony" value="<?=$item['balcony']?>">
                             </div>
                             <div class="input-group">
                                 <label for="area">Введите область дома</label>
-                                <input type="number" id="area" name="area"
-                                    value="<?=$item['area']?>">
+                                <input type="number" id="area" name="area" value="<?=$item['area']?>">
                             </div>
                         </div>
                         <div class="infos-posts">
                             <div class="input-group">
                                 <label for="floor">Введите этаж</label>
-                                <input type="number" id="floor" name="floor"
-                                    value="<?=$item['floor']?>">
+                                <input type="number" id="floor" name="floor" value="<?=$item['floor']?>">
+                                <label for="max_floor">Введите количество этажей в доме</label>
+                                <input type="number" id="max_floor" name="max_floor" value="<?=$item['max_floor']?>">
                             </div>
                             <div class="input-group">
                                 <label for="year">Введите год постройки</label>
-                                <input type="number" id="year" name="year"
-                                    value="<?=$item['year']?>">
+                                <input type="number" id="year" name="year" value="<?=$item['year']?>">
                             </div>
                             <div class="input-group">
                                 <label for="bedrooms">Введите количество комнат</label>
-                                <input type="number" id="bedrooms" name="bedrooms"
-                                    value="<?=$item['bedrooms']?>">
+                                <input type="number" id="bedrooms" name="bedrooms" value="<?=$item['bedrooms']?>">
                             </div>
                         </div>
                         <div class="infos-posts">
                             <div class="input-group">
                                 <label for="height">Введите высоту потолков</label>
-                                <input type="number" id="height" name="height"
-                                    value="<?=$item['height']?>">
+                                <input type="number" id="height" name="height" value="<?=$item['height']?>">
                             </div>
                         </div>
                         <div class="input-group">

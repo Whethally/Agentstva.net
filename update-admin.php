@@ -83,6 +83,8 @@ include("datebase.php");
                             <div class="input-group">
                                 <label for="floor">Введите этаж</label>
                                 <input type="number" id="floor" name="floor" value="<?=$item['floor']?>">
+                                <label for="max_floor">Введите количество этажей в доме</label>
+                                <input type="number" id="max_floor" name="max_floor" value="<?=$item['max_floor']?>">
                             </div>
                             <div class="input-group">
                                 <label for="year">Введите год постройки</label>

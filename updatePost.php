@@ -8,6 +8,7 @@ $price = empty($_POST['price']) ? false : $_POST['price'];
 $description = empty($_POST['description']) ? false : $_POST['description'];
 $area = empty($_POST['area']) ? false : $_POST['area'];
 $floor = empty($_POST['floor']) ? false : $_POST['floor'];
+$max_floor = empty($_POST['max_floor']) ? false : $_POST['max_floor'];
 $year = empty($_POST['year']) ? false : $_POST['year'];
 $bedrooms = empty($_POST['bedrooms']) ? false : $_POST['bedrooms'];
 $height = empty($_POST['height']) ? false : $_POST['height'];
@@ -16,7 +17,7 @@ $material = empty($_POST['material']) ? false : $_POST['material'];
 $balcony = empty($_POST['balcony']) ? false : $_POST['balcony'];
 $street = empty($_POST['street']) ? false : $_POST['street'];
 
-if ($name and $price and $description and $area and $floor and $year and $bedrooms and $height and $city and $material and $balcony and $street) {
+if ($name and $price and $description and $area and $floor and $max_floor and $year and $bedrooms and $height and $city and $material and $balcony and $street) {
     $sql = "UPDATE `items`
     SET
     `name` = '$name',
@@ -28,6 +29,7 @@ if ($name and $price and $description and $area and $floor and $year and $bedroo
     `balcony` = '$balcony',
     `area` = '$area',
     `floor` = '$floor',
+    `max_floor` = '$max_floor',
     `year` = '$year',
     `bedrooms` = '$bedrooms',
     `height` = '$height'

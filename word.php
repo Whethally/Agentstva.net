@@ -10,12 +10,26 @@ $outputFile = 'dogovor_kupli_prodaji.docx';
 
 // Code
 
-$place_of_birth_user = $_POST['place_of_birth_user'];
-$passport_user = $_POST['passport_user'];
-$passport_issued_user = $_POST['passport_issued_user'];
-$passport_date_user = $_POST['passport_date_user'];
-$passport_code_user = $_POST['passport_code_user'];
-$address_user = $_POST['address_user'];
+$arr = [
+    'январь',
+    'февраль',
+    'март',
+    'апрель',
+    'май',
+    'июнь',
+    'июль',
+    'август',
+    'сентябрь',
+    'октябрь',
+    'ноябрь',
+    'декабрь'
+];
+
+$month = date('n')-1;
+
+$dateNow_number = date("j");
+$dateNow_name = $arr[$month];
+$dateNow_year = date("Y");
 
 // var_dump($place_of_birth_user);
 
@@ -48,23 +62,44 @@ if ($_SESSION['id_User']) {
                                 foreach ($id_item as $id) {
 
                                     if ($row['id_item'] == $id) {
+                                        // Дата
+                                        $document->setValue('dateNow_number', $dateNow_number);
+                                        $document->setValue('dateNow_name', $dateNow_name);
+                                        $document->setValue('dateNow_year', $dateNow_year);
+                                        // Город
+                                        $document->setValue('city', $row['city']);
                                         // Продавец
                                         $document->setValue('last_name', $userList['last_Name']);
                                         $document->setValue('first_name', $userList['first_Name']);
                                         $document->setValue('middle_name', $userList['middle_Name']);
                                         $document->setValue('date_of_birthday', $userList['date_of_birthday']);
+
+                                        $document->setValue('place_of_birth', $userList['place_of_birth']);
+                                        $document->setValue('passport', $userList['passport']);
+                                        $document->setValue('passport_issued', $userList['passport_issued']);
+                                        $document->setValue('passport_date', $userList['passport_date']);
+                                        $document->setValue('passport_code', $userList['passport_code']);
+                                        $document->setValue('address', $userList['address']);
                                         // Покупатель
                                         $document->setValue('last_name_user', $resPokupatel['last_Name']);
                                         $document->setValue('first_name_user', $resPokupatel['first_Name']);
                                         $document->setValue('middle_name_user', $resPokupatel['middle_Name']);
                                         $document->setValue('date_of_birthday_user', $resPokupatel['date_of_birthday']);
 
-                                        $document->setValue('place_of_birth_user', $place_of_birth_user);
-                                        $document->setValue('passport_user', $passport_user);
-                                        $document->setValue('passport_issued_user', $passport_issued_user);
-                                        $document->setValue('passport_date_user', $passport_date_user);
-                                        $document->setValue('passport_code_user', $passport_code_user);
-                                        $document->setValue('address_user', $address_user);
+                                        $document->setValue('place_of_birth_user', $resPokupatel['place_of_birth']);
+                                        $document->setValue('passport_user', $resPokupatel['passport']);
+                                        $document->setValue('passport_issued_user', $resPokupatel['passport_issued']);
+                                        $document->setValue('passport_date_user', $resPokupatel['passport_date']);
+                                        $document->setValue('passport_code_user', $resPokupatel['passport_code']);
+                                        $document->setValue('address_user', $resPokupatel['address']);
+                                        // Квартира
+                                        $document->setValue('id_item', $row['id_item']);
+                                        $document->setValue('floor', $row['floor']);
+                                        $document->setValue('max_floor', $row['max_floor']);
+                                        $document->setValue('street', $row['street']);
+                                        $document->setValue('bedrooms', $row['bedrooms']);
+                                        $document->setValue('area', $row['area']);
+                                        $document->setValue('price', $row['price']);
                                         
                                         
 

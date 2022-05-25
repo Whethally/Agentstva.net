@@ -33,22 +33,14 @@ if ($_SESSION['id_User']) {
                     if (isset($_POST['login'])) {
                         $login = empty($_POST['login']) ? false : $_POST['login'];
                         $password = empty($_POST['password']) ? false : $_POST['password'];
-                        if ($login and $password) {
-                            $check = mysqli_query(
-                                $db,
-                                "SELECT count(*) FROM `users` where `login` = '$login' AND `password` = '$password' "
-                            );
-                        }
-                        
-                        if (mysqli_fetch_array($check)[0] == 1) {
-                            $userid = mysqli_fetch_assoc(
-                                mysqli_query(
-                                    $db,
-                                    "SELECT `id_User` FROM `users` WHERE `login` = '$login' AND `password` = '$password'"
-                                )
-                            )['id_User'];
-                            // echo $userid;
-                            $_SESSION['id_User'] = $userid;
+
+                        $sqlQuery = mysqli_query($db, "SELECT * FROM users WHERE login='$login'");
+
+                        $res = mysqli_fetch_array($sqlQuery);
+                        $current_password = $res['password'];
+
+                        if (password_verify($password, $current_password)) {
+                            $_SESSION['id_User'] = $res['id_User'];
                             header('location: profile.php');
                         }
                     }

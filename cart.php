@@ -184,12 +184,6 @@ include("datebase.php");
                 <?php
                 if ($_SESSION['id_User']) {
                     echo "
-                    <input type='text' name='place_of_birth_user' id='place_of_birth_user' placeholder='Место рождения'>
-<input type='text' name='passport_user' id='passport_user' placeholder='Серия, номер паспорта'>
-<input type='text' name='passport_issued_user' id='passport_issued_user' placeholder='Выдан'>
-<input type='date' name='passport_date_user' id='passport_date_user' placeholder='Дата выдачи паспорта'>
-<input type='text' name='passport_code_user' id='passport_code_user' placeholder='Код подразделения'>
-<input type='text' name='address_user' id='address_user' placeholder='Адрес регистрации'>
                     <input type='hidden' name='first_Name' id='first_Name'>
                     <div class='input-group'>
                         <button class='button' type='submit'>Создать документ</button>

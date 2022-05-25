@@ -42,10 +42,33 @@
                             $email = empty($_POST['email']) ? false : $_POST['email'];
                             
                             $date_of_birthday = empty($_POST['date_of_birthday']) ? false : $_POST['date_of_birthday'];
+
+                            $place_of_birth = empty($_POST['place_of_birth']) ? false : $_POST['place_of_birth'];
+                            $passport = empty($_POST['passport']) ? false : $_POST['passport'];
+                            $passport_issued = empty($_POST['passport_issued']) ? false : $_POST['passport_issued'];
+                            $passport_date = empty($_POST['passport_date']) ? false : $_POST['passport_date'];
+                            $passport_code = empty($_POST['passport_code']) ? false : $_POST['passport_code'];
+                            $address = empty($_POST['address']) ? false : $_POST['address'];
                             
                             $result = mysqli_query(
                                 $db,
-                                "INSERT INTO `users` (`id_User`,`login`,`password`,`first_Name`,`middle_Name`,`last_Name`,`phone`,`email`,`date_of_birthday`) VALUES (null,'$login','$password','$first_Name','$middle_Name','$last_Name','$phone','$email','$date_of_birthday')"
+                                "INSERT INTO `users`(`id_User`,`login`,`password`,`first_Name`,`middle_Name`,`last_Name`,`phone`,`email`,`date_of_birthday`,`place_of_birth`,`passport`,`passport_issued`,`passport_date`,`passport_code`,`address`)
+                                VALUES (null,
+                                '$login',
+                                '". password_hash($password, PASSWORD_BCRYPT) ."',
+                                '$first_Name',
+                                '$middle_Name',
+                                '$last_Name',
+                                '$phone',
+                                '$email',
+                                '$date_of_birthday',
+                                '$place_of_birth',
+                                '$passport',
+                                '$passport_issued',
+                                '$passport_date',
+                                '$passport_code',
+                                '$address'
+                                )"
                             );
                             if ($result) {
                                 echo "<p>Вы успешно зарегистрированы!</p>";
@@ -100,6 +123,38 @@
                                     <i class='bx bxs-calendar'></i>
                                     <input type="date" placeholder="Введите дату рождения" name="date_of_birthday"
                                         id="date_of_birthday" class="user" required />
+                                </div>
+                            </div>
+                            <div class="input-block">
+                                <div class="input-item iip">
+                                    <i class='bx bxs-user'></i>
+                                    <input type="text" placeholder="Введите место жительство" name="place_of_birth"
+                                        id="place_of_birth" class="user" required />
+                                </div>
+                                <div class="input-item iip">
+                                    <i class='bx bxs-user'></i>
+                                    <input type="text" placeholder="Введите паспортные данные" name="passport"
+                                        id="passport" class="user" required />
+                                </div>
+                                <div class="input-item iip">
+                                    <i class='bx bxs-user'></i>
+                                    <input type="text" placeholder="Введите место выдачи паспорта"
+                                        name="passport_issued" id="passport_issued" class="user" required />
+                                </div>
+                                <div class="input-item iip">
+                                    <i class='bx bxs-user'></i>
+                                    <input type="text" placeholder="Введите дату выдачи паспорта" name="passport_date"
+                                        id="passport_date" class="user" required />
+                                </div>
+                                <div class="input-item iip">
+                                    <i class='bx bxs-user'></i>
+                                    <input type="text" placeholder="Введите код подразделения паспорта"
+                                        name="passport_code" id="passport_code" class="user" required />
+                                </div>
+                                <div class="input-item iip">
+                                    <i class='bx bxs-user'></i>
+                                    <input type="text" placeholder="Введите адрес жительства" name="address"
+                                        id="address" class="user" required />
                                 </div>
                                 <input type="submit" class="panel__login" value="Зарегистрироваться" name="submit" />
                             </div>

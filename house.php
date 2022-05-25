@@ -114,8 +114,7 @@ if (empty($res)) {
                                 </div>
                             </div>
                             <div class="input-group-house">
-                                <img src="<?=$item['image'] ?>"
-                                    alt="" class="house__img" />
+                                <img src="<?=$item['image'] ?>" alt="" class="house__img" />
 
                             </div>
                             <form action="" method="post">
@@ -124,8 +123,7 @@ if (empty($res)) {
                                         <i class='bx bxs-cart-add'></i> Добавить в корзину
                                     </button>
                                 </div>
-                                <input type="hidden" name="id_item"
-                                    value="<?=$item['id_item']?>">
+                                <input type="hidden" name="id_item" value="<?=$item['id_item']?>">
                                 </input>
                             </form>
 
@@ -166,7 +164,7 @@ if (empty($res)) {
                             <div class="input-group-house">
                                 <div class="house-text">
                                     <h1>Этаж</h1>
-                                    <p class="title"><?=$item['floor'] ?>
+                                    <p class="title"><?=$item['floor'] ?> / <?=$item['max_floor'] ?>
                                     </p>
                                 </div>
                             </div>
