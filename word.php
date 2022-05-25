@@ -95,7 +95,7 @@ if ($_SESSION['id_User']) {
                                         // Квартира
                                         $document->setValue('id_item', $row['id_item']);
                                         $document->setValue('floor', $row['floor']);
-                                        $document->setValue('max_floor', $row['max_floor']);
+                                        $document->setValue('floor_max', $row['max_floor']);
                                         $document->setValue('street', $row['street']);
                                         $document->setValue('bedrooms', $row['bedrooms']);
                                         $document->setValue('area', $row['area']);
