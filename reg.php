@@ -49,6 +49,14 @@
                             $passport_date = empty($_POST['passport_date']) ? false : $_POST['passport_date'];
                             $passport_code = empty($_POST['passport_code']) ? false : $_POST['passport_code'];
                             $address = empty($_POST['address']) ? false : $_POST['address'];
+
+                            $check = mysqli_query($db, "SELECT `id_User` FROM `users` WHERE `login`='$login'");
+                            $myrow = mysqli_fetch_array($check);
+                            if (!empty($myrow['id_User'])) {
+                                echo '<p>Данный пользователь уже зарегистрирован</p><br/>';
+                                echo "<p><a href='reg.php'>Назад</a></p>";
+                                exit();
+                            }
                             
                             $result = mysqli_query(
                                 $db,
@@ -73,14 +81,9 @@
                             if ($result) {
                                 echo "<p>Вы успешно зарегистрированы!</p>";
                                 echo "<script> location.href = 'login.php' </script>";
-                            } else if ($check = mysqli_query($db, "SELECT id_User FROM users WHERE `login`='$login'")) {
-                                $myrow = mysqli_fetch_array($check);
-                                if (!empty($myrow['id_User'])) {
-                                    echo "<p>Извините, введённый вами логин уже зарегистрирован. Введите другой логин.</p>";
-                                }
                             }
-                        }
-?>
+                        } else {
+                            ?>
                     <form method="post">
                         <div class="input-container">
                             <div class="input-block">
@@ -165,6 +168,8 @@
                             </div>
                         </div>
                     </form>
+                    <?php
+                        }?>
         </section>
     </main>
 

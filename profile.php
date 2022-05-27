@@ -72,7 +72,8 @@ function phone_format($phone)
                     <div class="input-container-profile">
                         <div class="input-item">
                             <div class="myaccount">
-                                <img src="<?=$row['avatar']?>" alt="" class="square">
+                                <img src="<?=$row['avatar']?>"
+                                    alt="" class="square">
                                 <h1>Аккаунт</h1>
                             </div>
                         </div>
@@ -220,7 +221,7 @@ function phone_format($phone)
                                             <div class="icon">
                                                 <i class='bx bxs-user'></i>
                                             </div>
-                                            <p class="title">First Name</p>
+                                            <p class="title">Имя</p>
                                         </div>
                                         <div class="account-group">
                                             <input type="text" name="first_Name" class="subtitle"
@@ -233,7 +234,7 @@ function phone_format($phone)
                                             <div class="icon">
                                                 <i class='bx bxs-user'></i>
                                             </div>
-                                            <p class="title">Last Name</p>
+                                            <p class="title">Фамилия</p>
                                         </div>
                                         <div class="account-group">
                                             <input type="text" name="last_Name" class="subtitle"
@@ -247,7 +248,7 @@ function phone_format($phone)
                                             <div class="icon">
                                                 <i class='bx bxs-user'></i>
                                             </div>
-                                            <p class="title">Middle Name</p>
+                                            <p class="title">Отчество</p>
                                         </div>
                                         <div class="account-group">
                                             <input type="text" name="middle_Name" class="subtitle"
@@ -263,7 +264,7 @@ function phone_format($phone)
                                             <div class="icon">
                                                 <i class='bx bxs-phone'></i>
                                             </div>
-                                            <p class="title">Tel</p>
+                                            <p class="title">Телефон</p>
                                         </div>
                                         <div class="account-group">
                                             <input type="text" name="phone" class="subtitle"
@@ -280,7 +281,8 @@ function phone_format($phone)
                                             <p class="title">E-mail</p>
                                         </div>
                                         <div class="account-group">
-                                            <input type="text" name="email" class="subtitle" value="<?=$row['email']?>">
+                                            <input type="text" name="email" class="subtitle"
+                                                value="<?=$row['email']?>">
                                             </input>
                                         </div>
                                     </div>
@@ -290,7 +292,7 @@ function phone_format($phone)
                                             <div class="icon">
                                                 <i class='bx bxs-calendar'></i>
                                             </div>
-                                            <p class="title">Birthday</p>
+                                            <p class="title">Дата рождения</p>
                                         </div>
                                         <div class="account-group">
                                             <input type="date" name="date_of_birthday" class="subtitle"
@@ -406,10 +408,10 @@ function phone_format($phone)
                                         <div class="icon">
                                             <i class='bx bxs-edit'></i>
                                         </div>
-                                        <p class="title">Change password</p>
+                                        <p class="title">Изменить пароль</p>
                                     </div>
                                     <div class="account-group">
-                                        <input type="button" class="button" id="password_edit" value="Edit">
+                                        <input type="button" class="button" id="password_edit" value="Изменить">
                                         </input>
                                     </div>
                                 </div>
@@ -420,10 +422,10 @@ function phone_format($phone)
                                         <div class="icon">
                                             <i class='bx bxs-edit'></i>
                                         </div>
-                                        <p class="title">Change avatar</p>
+                                        <p class="title">Изменить аватар</p>
                                     </div>
                                     <div class="account-group">
-                                        <input type="button" class="button" id="editAvatar" value="Edit">
+                                        <input type="button" class="button" id="editAvatar" value="Изменить">
                                         </input>
                                     </div>
                                 </div>
@@ -450,7 +452,8 @@ $res = mysqli_query($db, $sql);
 if (mysqli_num_rows($res) > 0) {
     foreach ($res as $item) { ?>
                                 <div class="category__data">
-                                    <img src="<?=$item['image'] ?>" alt="" class="category__img" />
+                                    <img src="<?=$item['image'] ?>"
+                                        alt="" class="category__img" />
                                     <h3 class="category__title"><?=$item['name'] ?>
                                     </h3>
                                     <p class="category__description">
@@ -505,12 +508,12 @@ if (mysqli_num_rows($res) > 0) {
                     $sql = "UPDATE `users` SET `password` = '". password_hash($new_password, PASSWORD_BCRYPT) ."' WHERE `id_User`='" . $_SESSION["id_User"] . "'";
 
                     $edit = mysqli_query($db, $sql);
-                    echo "<script> location.href = 'profile.php' </script>";
+                    exit('<p>Данные успешно сохранены</p>');
                 } else {
                     echo("<p>Неверный пароль</p>");
                 }
-            }
-    ?>
+            } {
+                ?>
             </div>
         </section>
     </main>
@@ -535,6 +538,8 @@ if (mysqli_num_rows($res) > 0) {
             </form>
         </div>
     </div>
+    <?php
+            }?>
     <?php
     if (isset($_POST['editAvatar'])) {
         $tmp = $_FILES['image']['tmp_name'];
@@ -606,7 +611,7 @@ if (mysqli_num_rows($res) > 0) {
 
             if ($result) {
                 move_uploaded_file($tmp, $image);
-                echo "<script> location.href = 'profile.php' </script>";
+                exit('<p>Вы успешно добавили пост на сайт</p>');
             } else {
                 echo "Error";
             }

@@ -42,6 +42,8 @@ if ($_SESSION['id_User']) {
                         if (password_verify($password, $current_password)) {
                             $_SESSION['id_User'] = $res['id_User'];
                             header('location: profile.php');
+                        } else {
+                            echo "<p>Неверный логин или пароль.</p>";
                         }
                     }
                     {

@@ -5,8 +5,8 @@ include("datebase.php");
 // PhpWord
 
 require 'vendor/autoload.php';
-
-$outputFile = 'dogovor_kupli_prodaji.docx';
+$name = str_replace(" ", "_", $_SESSION['id_User']);
+$outputFile = "dogovor_kupli_prodaji".$name.".docx";
 
 // Code
 
@@ -47,20 +47,17 @@ if ($_SESSION['id_User']) {
         $uploadDir = __DIR__;
         $count = count($_SESSION['cart']);
         if (count($id_item) > 0) {
-            
+            while ($userListPok = mysqli_fetch_assoc($resUser)) {
+                foreach ($resUser as $resPokupatel) { // Вывод покупатель
 
-                    while ($userListPok = mysqli_fetch_assoc($resUser)) {
-                        foreach ($resUser as $resPokupatel) { // Вывод покупатель
+                    while ($row = mysqli_fetch_assoc($result)) { // Вывод товара
 
-                            while ($row = mysqli_fetch_assoc($result)) { // Вывод товара
-
-                                $res = mysqli_query($db, "SELECT * FROM `users` WHERE `id_User` = " .$row['id_User']. "");
+                        $res = mysqli_query($db, "SELECT * FROM `users` WHERE `id_User` = " .$row['id_User']. "");
                                 
-                                while ($user = mysqli_fetch_assoc($res)) {
-                                    foreach ($res as $userList) { // Вывод продавца
+                        while ($user = mysqli_fetch_assoc($res)) {
+                            foreach ($res as $userList) { // Вывод продавца
 
                                 foreach ($id_item as $id) {
-
                                     if ($row['id_item'] == $id) {
                                         // Дата
                                         $document->setValue('dateNow_number', $dateNow_number);
@@ -108,9 +105,9 @@ if ($_SESSION['id_User']) {
                                         // $sheet->setCellValue("D".$i, "1");
                                         // $sheet->setCellValue("E".$i, number_format($row['price']));
                                         // $sheet->setCellValue("F".$i, date('Y-m-d H:i:s'));
+                                    }
+                                }
                             }
-                        }
-                    }
                         }
                     }
                 }

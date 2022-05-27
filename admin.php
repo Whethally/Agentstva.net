@@ -226,22 +226,6 @@ if (mysqli_num_rows($res) > 0) {
 ?>
                             </div>
                         </div>
-                        <div class="input-item">
-                            <div class="infos">
-                                <div class="input-group">
-                                    <div class="account-text">
-                                        <div class="icon">
-                                            <i class='bx bxs-edit'></i>
-                                        </div>
-                                        <p class="title">Добавить администратора</p>
-                                    </div>
-                                    <div class="account-group">
-                                        <input type="button" class="button" id="user_add" value="Добавить">
-                                        </input>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -257,6 +241,7 @@ if (mysqli_num_rows($res) > 0) {
         $description = empty($_POST['description']) ? false : $_POST['description'];
         $area = empty($_POST['area']) ? false : $_POST['area'];
         $floor = empty($_POST['floor']) ? false : $_POST['floor'];
+        $max_floor = empty($_POST['max_floor']) ? false : $_POST['max_floor'];
         $year = empty($_POST['year']) ? false : $_POST['year'];
         $bedrooms = empty($_POST['bedrooms']) ? false : $_POST['bedrooms'];
         $height = empty($_POST['height']) ? false : $_POST['height'];
@@ -265,14 +250,14 @@ if (mysqli_num_rows($res) > 0) {
         $balcony = empty($_POST['balcony']) ? false : $_POST['balcony'];
         $street = empty($_POST['street']) ? false : $_POST['street'];
 
-        if ($tmp and $name and $price and $description and $area and $floor and $year and $bedrooms and $height and $city and $material and $balcony and $street) {
+        if ($tmp and $name and $price and $description and $area and $floor and $max_floor and $year and $bedrooms and $height and $city and $material and $balcony and $street) {
             $image = $_FILES['imagePost']['name'];
             $image = "assets/img/" . $image;
-            $id_admin = $_SESSION['id_admin'];
+            $id_User = $_SESSION['id_User'];
 
             $sql = "INSERT INTO `items`
-            (`id_item`, `image`, `name`, `city`, `price`, `description`, `street`, `material`, `balcony`, `area`, `floor`, `year`, `bedrooms`, `height`, `id_User`)
-            VALUES (NULL, '$image', '$name', '$city', '$price', '$description', '$street', '$material', '$balcony', '$area', '$floor', '$year', '$bedrooms', '$height', 1)";
+            (`id_item`, `image`, `name`, `city`, `price`, `description`, `street`, `material`, `balcony`, `area`, `floor`, `max_floor`, `year`, `bedrooms`, `height`, `id_User`)
+            VALUES (NULL, '$image', '$name', '$city', '$price', '$description', '$street', '$material', '$balcony', '$area', '$floor', `max_floor`, '$year', '$bedrooms', '$height', '$id_User')";
 
             $result = mysqli_query($db, $sql);
 
@@ -339,6 +324,8 @@ if (mysqli_num_rows($res) > 0) {
                     <div class="input-group">
                         <label for="floor">Введите этаж</label>
                         <input type="number" id="floor" name="floor">
+                        <label for="max_floor">Введите количество этажей в доме</label>
+                        <input type="number" id="max_floor" name="max_floor">
                     </div>
                     <div class="input-group">
                         <label for="year">Введите год постройки</label>
