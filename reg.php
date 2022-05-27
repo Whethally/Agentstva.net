@@ -73,7 +73,7 @@
                             if ($result) {
                                 echo "<p>Вы успешно зарегистрированы!</p>";
                                 echo "<script> location.href = 'login.php' </script>";
-                            } elseif ($check = mysqli_query($db, "SELECT id_User FROM users WHERE `login`='$login'")) {
+                            } else if ($check = mysqli_query($db, "SELECT id_User FROM users WHERE `login`='$login'")) {
                                 $myrow = mysqli_fetch_array($check);
                                 if (!empty($myrow['id_User'])) {
                                     echo "<p>Извините, введённый вами логин уже зарегистрирован. Введите другой логин.</p>";
